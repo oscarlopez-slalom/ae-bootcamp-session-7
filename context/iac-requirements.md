@@ -8,7 +8,9 @@
 
 ## Service Context
 
-<!-- Copilot: summarize what the todo-service is and how it will be hosted (from docs/project-overview.md) -->
+The todo-service is a simple full-stack task management app: a React SPA frontend (port 3000) that talks to a Node.js/Express REST API backend (port 4000, in-memory storage, endpoints under `/api/todos` plus a `/health` check). It exists as the baseline service for this platform engineering lab — the goal is not to change the app itself, but to build the surrounding platform (IaC, CI/CD, observability) around it.
+
+For hosting, both the frontend and backend are containerized (see their `Dockerfile`s) and deployed to **AWS ECS Fargate** behind an **Application Load Balancer**, using the Slalom PE Lab golden-path module below. The module provisions its own VPC/networking, ECR repositories for both images, the ECS cluster and task definition (two containers per task), the ALB with health checks, security groups, CloudWatch log groups, and IAM roles — so the dev stack only needs to supply environment-specific inputs (environment name, networking flag, and the allowed ALB ingress CIDR).
 
 ---
 
