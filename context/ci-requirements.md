@@ -8,7 +8,7 @@
 
 ## Service Context
 
-<!-- Copilot: summarize the tech stack (Node.js version, test framework, IaC tool) that CI must validate (from docs/project-overview.md) -->
+CI must validate a Node.js 20 / npm-workspaces monorepo with two packages: an Express 4 backend (`packages/backend`, Jest for unit tests with an 80% line/branch coverage threshold already configured in its `package.json`) and a React 18 frontend (`packages/frontend`, tested via `react-scripts test`/Jest). Both packages have ESLint configured (`.eslintrc.json`) and a `Dockerfile` for containerization. The IaC tool is Terraform (>= 1.5, AWS provider ~> 5.0) validating the dev stack at `infra/stacks/dev`.
 
 ## Reusable Workflow (`golden-path-ci.yml`)
 
